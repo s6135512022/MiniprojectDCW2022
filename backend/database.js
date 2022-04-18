@@ -7,9 +7,9 @@ let users = {
     ]
 }
 
-let portfolio = {
-    portfolio: [
-        { id: 1, list: "Clean the Park", sdate: "18 December 2021", doff: "20 December 2021", detail: "I sweep the leaves in the park" }
+let portfolios = {
+    portfolios: [
+        { id: 1, title: "Clean the Park", sdate: "18 December 2021", doff: "20 December 2021", detail: "I sweep the leaves in the park" }
     ]
 }
 
@@ -17,12 +17,12 @@ const SECRET = 'your_jwt_secret'
 const NOT_FOUND = -1
 
 exports.users = users 
-exports.portfolio = portfolio
+exports.portfolio = portfolios
 exports.SECRET = SECRET
 exports.NOT_FOUND = NOT_FOUND
 
-exports.setPortfolio = function(_portfolio) {
-    portfolio = _portfolio;
+exports.setPortfolio = function(_portfolios) {
+    portfolios = _portfolios;
 }
 
 exports.setUsers = function(_users) { 

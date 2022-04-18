@@ -1,4 +1,3 @@
-
 const express = require('express'),
 app = express(),
 passport = require('passport'),
@@ -10,9 +9,9 @@ const { json } = require('express')
 const db = require('./database.js')
 let users = db.users
 
-let portfolio = {
+let portfolios = {
     list: [
-        { id: 1, list: "Clean the Park", sdate: "18 December 2021", doff: "20 December 2021", detail: "I sweep the leaves in the park" }
+        { id: 1, title: "Clean the Park", sdate: "18 December 2021", doff: "20 December 2021", detail: "I sweep the leaves in the park" }
     ]
 }
 
@@ -74,24 +73,24 @@ passport.authenticate('jwt', { session: false }),
     res.send(req.user)
 });
 
-router.route('/problems')
-.get((req, res) => res.json(problems))
+router.route('/portfolios')
+.get((req, res) => res.json(portfolios))
 
 
-router.post('/problems',
+router.post('/portfolios',
 // passport.authenticate('jwt', { session: false }),
 (req, res) => {
     try {
 
-        let newProblem = {}
-        newProblem.id = (problems.list.length) ? problems.list[problems.list.length - 1].id + 1 : 1
-        newProblem.fname = req.body.fname;
-        newProblem.surname = req.body.surname;
-        newProblem.room = req.body.room;
-        newProblem.pb = req.body.pb;
+        let newPortfolio = {}
+        newPortfolio.id = (portfolios.list.length) ? portfolios.list[portfolio.list.length - 1].id + 1 : 1
+        newPortfolio.list = req.body.title;
+        newPortfolio.surname = req.body.sdate;
+        newPortfolio.room = req.body.doff;
+        newPortfolio.pb = req.body.detail;
 
-        problems = { "list": [...problems.list, newProblem] }
-        res.json(problems)
+        portfolios = { "list": [...portfolios.list, newPortfolio] }
+        res.json(portfolios)
     }
     catch
     {
@@ -101,13 +100,13 @@ router.post('/problems',
 
 
 })
-router.route('/problems/:std_id')
+router.route('/portfolio/:std_id')
 .get((req, res) => {
 
-    let ID = problems.list.findIndex( item => (item.id === +req.params.std_id))
+    let ID = portfolios.list.findIndex( item => (item.id === +req.params.std_id))
     if(ID >= 0)
     {
-        res.json(problems.list[ID])
+        res.json(portfolios.list[ID])
     }
     else
     {
@@ -118,16 +117,16 @@ router.route('/problems/:std_id')
 
 .put( (req,res) => { 
 
-    let ID = problems.list.findIndex( item => ( item.id === +req.params.std_id))
+    let ID = portfolios.list.findIndex( item => ( item.id === +req.params.std_id))
     
     if( ID >= 0)
     {
-        problems.list[ID].fname = req.body.fname
-        problems.list[ID].surname = req.body.surname
-        problems.list[ID].room = req.body.room
-        problems.list[ID].pb = req.body.pb
+        portfolios.list[ID].fname = req.body.title
+        portfolios.list[ID].surname = req.body.sdate
+        portfolios.list[ID].room = req.body.doff
+        portfolios.list[ID].pb = req.body.detail
         
-        res.json(problems)
+        res.json(portfolios)
 
 
     }
@@ -140,12 +139,12 @@ router.route('/problems/:std_id')
 
 .delete((req, res) => {
 
-    let ID = problems.list.findIndex( item => ( item.id === +req.params.std_id))
+    let ID = portfolios.list.findIndex( item => ( item.id === +req.params.std_id))
 
     if(ID>=0)
     {
-        problems.list = problems.list.filter( item => item.id !== +req.params.std_id)
-        res.json(problems)
+        portfolios.list = portfolios.list.filter( item => item.id !== +req.params.std_id)
+        res.json(portfolios)
     }
     else
     {
