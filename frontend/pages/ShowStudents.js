@@ -12,7 +12,7 @@ const ShowStudents = ({token}) => {
 
     const [students, setStudents] = useState({
         list: [
-            { id: 1, fname: "Pai", surname: "Thanida", major: "CoE", gpa: 2.64 }
+            { id: 1, fname: "xxx", surname: "xxx", major: "CoE", gpa: 2.64 }
         ]
     })
 
