@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
-import Navbar from '../components/navbar'
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import withAuth from '../components/withAuth'
 import config from '../config/config'
+import Header from '../components/header'
+
 
 const Profile1 = ({ token }) => {
 
@@ -16,12 +17,10 @@ const Profile1 = ({ token }) => {
     }, [])
 
     const profileUser = async () => {
-        try {
-            // console.log('token: ', token)
+        try {          
             const users = await axios.get(`${config.URL}/profile`, {
                 headers: { Authorization: `Bearer ${token}` }
-            })
-            // console.log('user: ', users.data)
+            })          
             setUser(users.data)
         }
         catch (e) {
@@ -33,18 +32,16 @@ const Profile1 = ({ token }) => {
     return (
         <Layout>
             <Head>
-                <title>User profile</title>
+                <title>Profile</title>
             </Head>
-            <div className={styles.container}>
-                <Navbar />
-                <h1>User profile</h1>
+            <div >
+                <Header />
+                <div className={styles.profile}>
+                <h1>Profile</h1>
                 <div>
-                    <b>Token:</b> {token.substring(0, 15)}... <br /><br />
-                    This route is protected by token, user is required to login first.
-                    <br/>
-                    Otherwise, it will be redirect to Login page
-                    <br/><br/>
-                    {JSON.stringify(user)}
+                <h2>    Username is <br></br>
+                    {JSON.stringify(user.username)}</h2>
+                </div>
                 </div>
             </div>
         </Layout>

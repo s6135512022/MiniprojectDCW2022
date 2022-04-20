@@ -100,7 +100,7 @@ router.post('/portfolios',
 
 
 })
-router.route('/portfolio/:std_id')
+router.route('/portfolios/:std_id')
 .get((req, res) => {
 
     let ID = portfolios.list.findIndex( item => (item.id === +req.params.std_id))
