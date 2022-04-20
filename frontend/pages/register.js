@@ -3,10 +3,9 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout'
 import styles from '../styles/Home.module.css'
-import Header from '../components/header'
+import Navbar from '../components/navbar'
 import axios from 'axios'
 import config from '../config/config'
-
 
 export default function Register({ token }) {
 
@@ -39,39 +38,36 @@ export default function Register({ token }) {
     }
 
     const registerForm = () => (
-        <div class="login-box">
-            <form>
-                <h1>Register</h1>
-                <div class="user-box">
-                    <input type="text"
-                        name="username"
-                        required=""
-                        onChange={(e) => setUsername(e.target.value)} />
-                    <label>Username</label>
-                </div>
-                <div class="user-box">
-                    <input type="text"
-                        name="email"
-                        required=""
-                        onChange={(e) => setEmail(e.target.value)} />
-                    <label>Email</label>
-                </div>
-                <div class="user-box">
-                    <input type="password"
-                        name="password" required="" onChange={(e) => setPassword(e.target.value)}></input>
-                    <label>Password</label> 
-                    <br />
-                        Status:  {status}
-                </div> 
-                <a onClick={register} href="#">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                         Submit
-                    </a>
+        <div className={styles.gridContainer}>
+            <div>
+                Username:
+            </div>
+            <div>
+                <input type="text"
+                    name="username"
+                    placeholder="username"
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+            </div>
+            <div>
+                Email:
+            </div>
+            <div>
+                <input type="email"
+                    name="email"
+                    placeholder="email"
+                    onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div>
+                Password:
+            </div>
+            <div>
+                <input type="password"
+                    name="password"
+                    placeholder="password"
+                    onChange={(e) => setPassword(e.target.value)} />
+            </div>
 
-            </form>
         </div>
     )
 
@@ -81,9 +77,21 @@ export default function Register({ token }) {
             <Head>
                 <title>Register</title>
             </Head>
-            <Header /> 
-              <br></br>                       
-            {registerForm()}                    
+            <div className={styles.container}>
+                <Navbar />
+                <h1>Register</h1>
+              
+                <br />
+            Status:  {status}
+                <br /><br />
+                <div className={styles.content}>
+                    {registerForm()}
+                </div>
+
+                <div>
+                    <button className={styles.buttoncolorReg} onClick={register}>Register</button>
+                </div>
+            </div>
         </Layout>
     )
 }

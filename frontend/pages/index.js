@@ -1,67 +1,106 @@
 import Head from 'next/head'
-import { useState, useEffect } from "react"
-import axios from 'axios'
-import config from '../config/config'
 import Layout from '../components/layout'
-import Header from '../components/header'
+import Navbar from '../components/navbar'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
-import { Table, Card, Alert } from 'antd'
+import axios from 'axios'
+//import withAuth from '../components/withAuth'
+//import config from '../config/config'
+import useSWR, { mutate } from 'swr';
+
+const URL  = `http://localhost/api/Portfolios`;
+const fetcher = url => axios.get(url).then(res => res.data);
+
 export default function Home({ token }) {
-  useEffect(() => {
-    getPortfolios()
-  }, [])
-  const [portfolios, setPortfolios] = useState({
-  })
-  const getPortfolios = async () => {
-
-    let portfolio = await axios.get(`${config.URL}/portfolios`)
-    setPortfolios(portfolio.data)
-
+  
+ const {data} = useSWR(URL,fetcher);
+ const [max, setMax] = useState(10000);
+ const [min, setMin] = useState(0);
+ const [name, setName] = useState('');
+if (!data) {
+      console.log(data);
+      return <div><h1>Please wait...</h1></div>
+ }
+ const searchWork = (str) => {
+    if(str == '')
+      setName('')
+    else
+   {for(let i = 0 ;i <data.list.length;i++)
+    {let strtest = data.list[i].name
+    let n = strtest.includes(str)
+    if(n){
+      setName(data.list[i].name)
+    }
+    }}
+ }
+ const printPortfolios = (data) => {
+  if(max == 0 || max == '')
+    setMax(10000)
+  if (data && data.length) {
+    if(name != ''){
+      let   Name = data.filter((item)=>item.name == name);
+            Name = Name.filter((item)=>+item.detail>=min);
+            Name = Name.filter((item)=>+item.detail<=max);
+      return Name.map((item, index) => {
+        return (
+        <div className={styles.listItem} key={index}>
+          <div><b>Title:</b> {item.name}</div>
+          <div><b>StartDate:</b> {item.sdate} </div>
+          <div><b>DayOff:</b> {item.doff}</div>
+          <div><b>Detail:</b> {item.detail}</div>
+          <div>
+          </div>
+          <br></br>
+        </div>
+      );
+    });
+    }
+    else
+    { 
+      let Data = data.filter((item)=>+item.detail>=min);
+          Data = Data.filter((item)=>+item.detail<=max);
+      return Data.map((item, index) => {
+        return (
+        <div className={styles.listItem} key={index}>
+          <div><b>Title:</b> {item.name}</div>
+          <div><b>StartDate:</b> {item.sdate} </div>
+          <div><b>DayOff:</b> {item.doff}</div>
+          <div><b>Detail:</b> {item.detail}</div>
+          <div>
+          </div>
+          <br></br>
+        </div>
+      );
+    });}
+  } 
+    else {
+    return <p>Please wait...</p>;
   }
-  const dataSource = portfolios['list']
-  const columns = [
-    {
-      title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
-    },
-    {
-      title: 'Startdate',
-      dataIndex: 'startdate',
-      key: 'startdate',
-    },
-    {
-      title: 'Dayoff',
-      dataIndex: 'doff',
-      key: 'doff',
-    },
-    {
-      title: 'Detail',
-      dataIndex: 'detail',
-      key: 'detail',
-    },
-
-  ];
+};
 
   return (
     <Layout>
-      <Head>
-        <title>Home</title>
-      </Head>
-      <div >
-        <Header />
-        <div className={styles.title}>My Portfolio<br></br>
-          <div style={{ textAlign: 'left' }}>ผลงานทั้งหมด</div>
-        </div>
-        <Card style={{ marrgin: 10 }}>
-          <Table
-            style={{ fontSize: 18 }}
-            dataSource={dataSource}
-            columns={columns}
-            pagination={false}>
-          </Table>
-        </Card>
+    <Head>
+        <title>Home Page</title>
+    </Head>
+    <div className={styles.container}>
+        <Navbar />
+        <br></br>
+        <h1>Portfolios</h1>
+        <div>
+       ช่วงเวลา : <input type="number" placeholder="startdate" onChange={(e) => setMin(e.target.value)}></input>
+      <input type="number" placeholder="dayoff" onChange={(e) => setMax(e.target.value)}></input> ค้นหาผลงาน : 
+      <input type="text" placeholder="ชื่อผลงาน" onChange={(e) => searchWork(e.target.value)}></input>    
       </div>
-    </Layout>
+      <div className={styles.list}>
+            
+      {printPortfolios(data.list)} 
+                   
+      
+                   
+        
+      </div>
+    </div>
+</Layout>
   )
 }

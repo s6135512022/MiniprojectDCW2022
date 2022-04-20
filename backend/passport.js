@@ -12,15 +12,14 @@ const passportJWT = require("passport-jwt"),
 passport.use(
     new LocalStrategy({
         usernameField: 'username',
-        passwordField: 'password',
-      
+        passwordField: 'password'
     }, async (username, password, cb) => {
-        console.log('User: ', username, password, )
+        console.log('User: ', username, password)
         const index = db.checkExistingUser(username)
         if (index !== db.NOT_FOUND && await db.isValidUser(username, password)) {
-            const { id, username, email, ischeck } = users.users[index]
+            const { id, username, email } = users.users[index]
             return cb(null,
-                { id, username, email, ischeck },
+                { id, username, email },
                 { message: 'Logged In Successfully' })
         }
         else
