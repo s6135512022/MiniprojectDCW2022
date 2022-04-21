@@ -80,16 +80,16 @@ export default function Register({ token }) {
             <div className={styles.container}>
                 <Navbar />
                 <h1>Register</h1>
-              
+                
                 <br />
-            Status:  {status}
+                Status:  {status}
                 <br /><br />
                 <div className={styles.content}>
                     {registerForm()}
                 </div>
 
                 <div>
-                    <button className={styles.buttoncolorReg} onClick={register}>Register</button>
+                    <button className="p-2 bg-green-500 hover:text-[#EEEEEE] rounded-lg drop-shadow-lg font-bold font-display transition transform hover:-translate-y-2 motion-reduce:transition-none motion-reduce:hover:transform-none" onClick={register}>Register</button>
                 </div>
             </div>
         </Layout>

@@ -7,7 +7,7 @@ const express = require('express'),
     cookie = require('cookie')
 
 const bcrypt = require('bcrypt')
-
+const { json } = require('express')
 const db = require('./database.js')
 let users = db.users
 let Portfolios = db.Portfolios

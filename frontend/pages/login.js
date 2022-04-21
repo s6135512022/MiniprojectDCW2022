@@ -86,7 +86,7 @@ export default function Login({ token }) {
                 <br />
                 {loginForm()}
                 <div>
-                    <button className={styles.buttoncolorLogin} onClick={login}>Login</button>
+                    <button className="p-2 bg-green-500 hover:text-[#EEEEEE] rounded-lg drop-shadow-lg font-bold font-display transition transform hover:-translate-y-2 motion-reduce:transition-none motion-reduce:hover:transform-none" onClick={login}>Login</button>
                 </div>
             </div>
         </Layout>

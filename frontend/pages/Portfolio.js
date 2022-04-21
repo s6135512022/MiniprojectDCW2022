@@ -71,10 +71,12 @@ const admin = ({ token }) => {
               {/* <button className="mr-4 p-2 bg-red-400 hover:text-[#EEEEEE] rounded-lg drop-shadow-lg font-bold font-display transition transform hover:-translate-y-2 motion-reduce:transition-none motion-reduce:hover:transform-none" onClick={() => getPortfolio(item.id)} >
                 Get
               </button> */}
-              <button className="p-2 bg-green-500 hover:text-[#EEEEEE] rounded-lg drop-shadow-lg font-bold font-display transition transform hover:-translate-y-2 motion-reduce:transition-none motion-reduce:hover:transform-none" onClick={() => updatePortfolio(item.id)} >
+              <button className="p-2 bg-green-500 hover:text-[#EEEEEE] rounded-lg drop-shadow-lg font-bold font-display transition transform hover:-translate-y-2 
+              motion-reduce:transition-none motion-reduce:hover:transform-none" onClick={() => updatePortfolio(item.id)} >
                 Update
               </button>
-              <button className="p-2 bg-green-500 hover:text-[#EEEEEE] rounded-lg drop-shadow-lg font-bold font-display transition transform hover:-translate-y-2 motion-reduce:transition-none motion-reduce:hover:transform-none" onClick={() => deletePortfolio(item.id)}>
+              <button className="p-2 bg-green-500 hover:text-[#EEEEEE] rounded-lg drop-shadow-lg font-bold font-display transition transform hover:-translate-y-2
+               motion-reduce:transition-none motion-reduce:hover:transform-none" onClick={() => deletePortfolio(item.id)}>
                 Delete
               </button>
             </div>

@@ -71,9 +71,8 @@ export default function Home({ token }) {
         <Navbar />
         <br></br>
         <h1>PORTFOLIO</h1>
-        <div>
-          ค้นหาผลงาน :
-          <input type="text" placeholder="ชื่อผลงาน" onChange={(e) => setName(e.target.value)}></input>
+        <div>ค้นหาผลงาน :
+        <input type="text" placeholder="ชื่อผลงาน" onChange={(e) => setName(e.target.value)}></input>
         </div>
         <div className={styles.list}>
           {printPortfolios(data.list)}
@@ -82,3 +81,5 @@ export default function Home({ token }) {
     </Layout>
   )
 }
+
+
