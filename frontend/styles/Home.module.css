@@ -5,7 +5,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:#EFE6EE;
+    background-color:#A14DD1 ;
+    
 }
 
 .content {
@@ -78,16 +79,18 @@
     cursor: pointer;
     border-radius: 10%;
     background-color:#D3ECDC;
-}
+} 
 
 .listItem {
     display: flex;
     flex-direction: column;
-    margin: 32px;
-    padding: 32px;
-    width: 30%;
-    border: 2px solid green;
+    margin: 35px;
+    padding: 35px;
+    width: 65%;
+    border: 2px solid #F7F4F8 ;
     font-size: 1.4rem;
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
     background-color:#FCDEE2;
  }
  

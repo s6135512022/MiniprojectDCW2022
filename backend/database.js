@@ -8,9 +8,9 @@ let users = {
 }
 let Portfolios = {
     list : [
-        {id:1,name:"จิตสาอาช่วยเก็บขยะ",sdate:"18 December 2021",doff :"19 December 2021",detail :"ทำจิตอาสาช่วยเก็บขยะริมหาด"},
-        {id:2,name:"อบรม Comptia cloud essentials",sdate:"20 April 2019",doff :"27 April 2019",detail :"อบรม Comptia cloud essentials พร้อมรับ Certificate"},
-        {id:3,name:"อบรม Microsoft",sdate:"5 February 2022",doff :"25 February 2022",detail :"อบรม Microsoft Azure"}
+        {id:1,name:"จิตสาอาช่วยเก็บขยะ",sdate:"2022-04-09",doff :"2022-04-09",detail :"ทำจิตอาสาช่วยเก็บขยะริมหาด"},
+        {id:2,name:"อบรม Comptia cloud essentials",sdate:"2022-01-15",doff :"2022-01-15",detail :"อบรม Comptia cloud essentials พร้อมรับ Certificate"},
+        {id:3,name:"อบรม Microsoft",sdate:"2022-02-12",doff :"2022-02-12",detail :"อบรม Microsoft Azure"}
     
     ]
     
